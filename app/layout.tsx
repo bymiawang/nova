@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     initialScale: 1,
     maximumScale: 1,
   },
+  icons: {
+    icon: '/ellipse-12.svg',
+    shortcut: '/ellipse-12.svg',
+    apple: '/ellipse-12.svg',
+  },
 }
 
 export default function RootLayout({

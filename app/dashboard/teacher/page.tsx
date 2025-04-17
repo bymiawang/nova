@@ -6,7 +6,7 @@ import { StudentProgressTable } from "./components/student-progress-table"
 
 export default function TeacherDashboardPage() {
   return (
-    <div className="h-full w-full space-y-6">
+    <div className="h-full w-full space-y-6 pb-8">
       <Tabs defaultValue="modules" className="h-full w-full">
         <TabsList>
           <TabsTrigger value="modules">Module Generation</TabsTrigger>

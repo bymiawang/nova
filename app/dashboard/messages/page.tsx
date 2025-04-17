@@ -98,10 +98,10 @@ export default function MessagesPage() {
 
   return (
     <div className="flex flex-col h-full w-full">
-      <div className="container px-4 md:px-6">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-4">
-            <Input placeholder="Search messages..." className="w-[300px] lg:w-[400px] xl:w-[500px]" />
+      <div className="container px-4 md:px-6 py-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+          <div className="flex items-center gap-4 w-full sm:w-auto">
+            <Input placeholder="Search messages..." className="w-full sm:w-[300px] lg:w-[400px] xl:w-[500px]" />
             <Button variant="outline" size="icon">
               <Search className="h-4 w-4" />
             </Button>
@@ -109,17 +109,17 @@ export default function MessagesPage() {
         </div>
       </div>
 
-      <div className="container px-4 md:px-6 flex-1">
-        <Tabs defaultValue="chat" className="w-full">
+      <div className="container px-4 md:px-6 flex-1 h-[calc(100vh-12rem)] pb-8">
+        <Tabs defaultValue="chat" className="w-full h-full">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="chat">Chat</TabsTrigger>
             <TabsTrigger value="ai">AI Tutors</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="chat" className="mt-6">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              <Card className="lg:col-span-4">
-                <CardContent className="space-y-2 p-6">
+          <TabsContent value="chat" className="mt-6 h-[calc(100%-3rem)]">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full">
+              <Card className="lg:col-span-4 h-full">
+                <CardContent className="space-y-2 p-4 h-full overflow-y-auto">
                   {chatMessages.map((message) => (
                     <div
                       key={message.id}
@@ -147,7 +147,7 @@ export default function MessagesPage() {
                 </CardContent>
               </Card>
 
-              <Card className="lg:col-span-8 flex flex-col">
+              <Card className="lg:col-span-8 flex flex-col h-full">
                 <CardHeader className="pb-4">
                   <div className="flex items-center gap-4">
                     <Avatar>
@@ -162,7 +162,7 @@ export default function MessagesPage() {
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="flex-1 space-y-4 overflow-y-auto">
+                <CardContent className="flex-1 space-y-4 overflow-y-auto p-4">
                   <div className="flex items-start gap-4">
                     <Avatar>
                       <AvatarImage src={selectedMessage.avatar} />
@@ -189,7 +189,7 @@ export default function MessagesPage() {
                         </Avatar>
                       )}
                       <div
-                        className={`p-3 rounded-lg ${
+                        className={`p-3 rounded-lg max-w-[80%] ${
                           msg.sent ? "bg-primary text-primary-foreground" : "bg-accent"
                         }`}
                       >
@@ -199,66 +199,51 @@ export default function MessagesPage() {
                     </div>
                   ))}
                 </CardContent>
-                <div className="p-4 border-t">
-                  <div className="flex items-center gap-2">
+                <CardFooter className="p-4 border-t">
+                  <div className="flex w-full items-center gap-2">
                     <Input
                       placeholder="Type a message..."
                       value={newMessage}
                       onChange={(e) => setNewMessage(e.target.value)}
-                      onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
+                      className="flex-1"
                     />
                     <Button onClick={handleSendMessage}>
                       <Send className="h-4 w-4" />
                     </Button>
                   </div>
-                </div>
+                </CardFooter>
               </Card>
             </div>
           </TabsContent>
 
-          <TabsContent value="ai" className="mt-6">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full">
-              <Card className="lg:col-span-12 w-full">
-                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 p-6 w-full">
-                  {aiMessages.map((message) => (
-                    <Card key={message.id} className="w-full">
-                      <CardContent className="p-6">
-                        <div className="flex flex-col space-y-4 h-full">
-                          <div className="flex items-start justify-between">
-                            <div className="flex items-center gap-3">
-                              <div className={`p-2 rounded-full ${getMessageTypeColor(message.type)}`}>
-                                {message.type === "performance" && <BarChart3 className="h-5 w-5" />}
-                                {message.type === "insight" && <Lightbulb className="h-5 w-5" />}
-                                {message.type === "feedback" && <MessageSquare className="h-5 w-5" />}
-                                {message.type === "review" && <Target className="h-5 w-5" />}
-                              </div>
-                              <div>
-                                <h3 className="font-medium">{message.sender}</h3>
-                                <p className="text-sm text-muted-foreground">{message.time}</p>
-                              </div>
-                            </div>
-                            <Badge variant="outline" className={getMessageTypeColor(message.type)}>
-                              {message.type.charAt(0).toUpperCase() + message.type.slice(1)}
-                            </Badge>
-                          </div>
-                          
-                          <div className="space-y-2 flex-grow">
-                            <h4 className="font-medium">{message.subject}</h4>
-                            <p className="text-muted-foreground">{message.details}</p>
-                          </div>
-
-                          <div className="flex justify-end mt-auto">
-                            <Button variant="outline" size="sm">
-                              {message.action}
-                              <ArrowRight className="ml-2 h-4 w-4" />
-                            </Button>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </Card>
+          <TabsContent value="ai" className="mt-6 pb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {aiMessages.map((message) => (
+                <Card key={message.id} className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="flex items-center gap-4">
+                      <div className={`p-2 rounded-full ${getMessageTypeColor(message.type)}`}>
+                        {message.type === "performance" && <BarChart3 className="h-5 w-5" />}
+                        {message.type === "insight" && <Lightbulb className="h-5 w-5" />}
+                      </div>
+                      <div>
+                        <CardTitle>{message.sender}</CardTitle>
+                        <CardDescription>{message.subject}</CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground mb-4">{message.preview}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-muted-foreground">{message.time}</span>
+                      <Button variant="ghost" size="sm" className="gap-2">
+                        {message.action}
+                        <ArrowRight className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </TabsContent>
         </Tabs>

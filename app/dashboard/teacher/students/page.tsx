@@ -92,7 +92,7 @@ export default function StudentsPage() {
   )
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 pb-8">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <Button className="gap-1">
           <Plus className="h-4 w-4" /> Add Student

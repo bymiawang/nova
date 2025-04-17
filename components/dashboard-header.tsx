@@ -82,7 +82,7 @@ export function DashboardHeader() {
   }
 
   return (
-    <div className="container flex h-16 items-center gap-4 px-4 md:px-6">
+    <div className="container flex h-16 items-center gap-4 px-4 md:px-6 pt-12 pb-8">
       <div className="flex-1">
         <h1 className="text-2xl font-semibold">
           {getPageTitle(pathname)}

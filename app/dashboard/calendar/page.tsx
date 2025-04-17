@@ -65,7 +65,7 @@ export default function CalendarPage() {
   }
 
   return (
-    <div className="flex flex-col h-full w-full">
+    <div className="flex flex-col h-full w-full pb-8">
       <div className="flex justify-between items-center">
         <Button>
           <Plus className="mr-2 h-4 w-4" />
