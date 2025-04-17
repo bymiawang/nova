@@ -65,16 +65,38 @@ export function ModuleCompletionChart() {
                 margin={{ top: 5, right: 5, left: 5, bottom: 5 }}
                 layout="vertical"
               >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis type="number" domain={[0, 100]} />
+                <defs>
+                  <linearGradient id="colorValue" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.8}/>
+                    <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0.2}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                <XAxis 
+                  type="number" 
+                  domain={[0, 100]} 
+                  stroke="hsl(var(--muted-foreground))"
+                  tick={{ fontSize: 12 }}
+                />
                 <YAxis
                   type="category"
                   dataKey="name"
                   width={150}
                   tick={{ fontSize: 12 }}
+                  stroke="hsl(var(--muted-foreground))"
                 />
-                <Tooltip />
-                <Bar dataKey="averageScore" fill="#8884d8" />
+                <Tooltip 
+                  contentStyle={{
+                    backgroundColor: "hsl(var(--background))",
+                    border: "1px solid hsl(var(--border))",
+                    borderRadius: "0.5rem",
+                  }}
+                />
+                <Bar 
+                  dataKey="averageScore" 
+                  fill="url(#colorValue)"
+                  radius={[0, 4, 4, 0]}
+                />
               </BarChart>
             </ResponsiveContainer>
           </div>

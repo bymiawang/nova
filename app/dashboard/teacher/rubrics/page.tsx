@@ -86,7 +86,7 @@ export default function RubricsPage() {
   )
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 pb-12">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <Dialog>
           <DialogTrigger asChild>
