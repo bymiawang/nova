@@ -172,9 +172,9 @@ export function AppSidebar() {
                 <AvatarImage src="/placeholder.svg?height=32&width=32" alt="Mia Wang" />
                 <AvatarFallback>MW</AvatarFallback>
               </Avatar>
-              <div className="flex flex-col items-start text-xs group-[[data-collapsible=icon]]:hidden">
+              <div className="flex flex-col items-start text-xs group-[[data-collapsible=icon]]:hidden ml-2">
                 <span>Mia Wang</span>
-                <span className="text-muted-foreground">{role}</span>
+                <span className="text-[10px] text-muted-foreground">{role}</span>
               </div>
               <ChevronDown className="ml-auto h-4 w-4 group-[[data-collapsible=icon]]:hidden" />
             </Button>

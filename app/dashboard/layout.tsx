@@ -15,7 +15,7 @@ export default function DashboardLayout({
         <AppSidebar />
         <div className="flex flex-1 flex-col w-full">
           <DashboardHeader />
-          <main className="flex-1 container px-4 md:px-6">
+          <main className="flex-1 container px-4 md:px-6 py-6">
             <div className="h-full w-full">{children}</div>
           </main>
         </div>
