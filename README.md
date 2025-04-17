@@ -1,6 +1,6 @@
 # nova
 
-Nova is an AI-powered web app that helps teachers and students plan, organize, and complete their academic projects with ease.
+Nova is an AI-powered web app that helps teachers and students plan, organize, and complete their academic projects with ease. Built as part of our Directed Research group with Hope Hsiao, Hamin Jin, Cristina Colina, and Ahmya Rivera.
 
 ## Features
 
