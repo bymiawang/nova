@@ -88,10 +88,6 @@ export default function RubricsPage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h2 className="text-2xl font-bold tracking-tight">Rubrics</h2>
-          <p className="text-muted-foreground">Create and manage assessment rubrics for student projects</p>
-        </div>
         <Dialog>
           <DialogTrigger asChild>
             <Button className="gap-1">
@@ -135,7 +131,7 @@ export default function RubricsPage() {
         <CardHeader>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <CardTitle>Your Rubrics</CardTitle>
+              <CardTitle className="text-lg">Your Rubrics</CardTitle>
               <CardDescription>Manage and edit your assessment rubrics</CardDescription>
             </div>
             <div className="flex items-center gap-2">
@@ -218,7 +214,7 @@ export default function RubricsPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Template Library</CardTitle>
+          <CardTitle className="text-lg">Template Library</CardTitle>
           <CardDescription>Ready-to-use rubric templates for various project types</CardDescription>
         </CardHeader>
         <CardContent>

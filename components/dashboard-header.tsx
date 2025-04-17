@@ -57,9 +57,9 @@ export function DashboardHeader() {
   function getPageTitle(pathname: string) {
     switch (pathname) {
       case "/dashboard":
-        return "Dashboard"
+        return "Welcome back, Mia"
       case "/dashboard/projects":
-        return "My Projects"
+        return "Projects"
       case "/dashboard/study-guide":
         return "Study Guide"
       case "/dashboard/calendar":
@@ -67,18 +67,24 @@ export function DashboardHeader() {
       case "/dashboard/messages":
         return "Messages"
       case "/dashboard/teacher":
-        return "Teacher Dashboard"
+        return "Welcome back, Mia"
+      case "/dashboard/teacher/students":
+        return "Students"
+      case "/dashboard/teacher/rubrics":
+        return "Rubrics"
+      case "/dashboard/teacher/analytics":
+        return "Analytics"
       case "/dashboard/brainstorm":
         return "Brainstorm"
       default:
-        return "Dashboard"
+        return "Welcome, Mia"
     }
   }
 
   return (
-    <div className="container flex h-16 items-center gap-4 px-4 md:px-6 pt-4">
+    <div className="container flex h-16 items-center gap-4 px-4 md:px-6">
       <div className="flex-1">
-        <h1 className="text-lg font-semibold sm:text-xl lg:text-2xl">
+        <h1 className="text-2xl font-semibold">
           {getPageTitle(pathname)}
         </h1>
       </div>

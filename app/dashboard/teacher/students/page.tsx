@@ -94,10 +94,6 @@ export default function StudentsPage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h2 className="text-2xl font-bold tracking-tight">Students</h2>
-          <p className="text-muted-foreground">Manage and monitor your students' projects and progress</p>
-        </div>
         <Button className="gap-1">
           <Plus className="h-4 w-4" /> Add Student
         </Button>
@@ -107,7 +103,7 @@ export default function StudentsPage() {
         <CardHeader>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <CardTitle>Student Overview</CardTitle>
+              <CardTitle className="text-lg">Student Overview</CardTitle>
               <CardDescription>View and manage all students in your class</CardDescription>
             </div>
             <div className="flex items-center gap-2">
@@ -202,7 +198,7 @@ export default function StudentsPage() {
       <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Project Status Overview</CardTitle>
+            <CardTitle className="text-lg">Project Status Overview</CardTitle>
             <CardDescription>Summary of student project statuses</CardDescription>
           </CardHeader>
           <CardContent>
@@ -234,7 +230,7 @@ export default function StudentsPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
+            <CardTitle className="text-lg">Recent Activity</CardTitle>
             <CardDescription>Latest student actions and updates</CardDescription>
           </CardHeader>
           <CardContent>

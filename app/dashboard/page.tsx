@@ -158,13 +158,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl font-bold">Welcome back, Mia Wang!</h1>
-          <p className="text-muted-foreground">Here's your personalized study analytics and recommendations</p>
-        </div>
-      </div>
+    <div className="flex flex-col h-full space-y-6">
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         <Card className="h-full">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

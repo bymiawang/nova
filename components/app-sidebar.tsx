@@ -25,6 +25,8 @@ import {
   Settings,
   User,
   Users,
+  GraduationCap,
+  FileText,
 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -54,71 +56,75 @@ export function AppSidebar() {
                 variant={pathname === "/dashboard" ? "secondary" : "ghost"}
                 className="w-full justify-start gap-2 group-[[data-collapsible=icon]]:justify-center group-[[data-collapsible=icon]]:px-2"
               >
-                <Link href="/dashboard">
+                <Link href={isTeacher ? "/dashboard/teacher" : "/dashboard"}>
                   <Home className="h-4 w-4" />
                   <span className="group-[[data-collapsible=icon]]:hidden">Dashboard</span>
                 </Link>
               </Button>
-              <Button
-                asChild
-                variant={pathname?.includes("/projects") ? "secondary" : "ghost"}
-                className="w-full justify-start gap-2 group-[[data-collapsible=icon]]:justify-center group-[[data-collapsible=icon]]:px-2"
-              >
-                <Link href="/dashboard/projects">
-                  <Users className="h-4 w-4" />
-                  <span className="group-[[data-collapsible=icon]]:hidden">My Projects</span>
-                </Link>
-              </Button>
+              {!isTeacher && (
+                <Button
+                  asChild
+                  variant={pathname?.includes("/projects") ? "secondary" : "ghost"}
+                  className="w-full justify-start gap-2 group-[[data-collapsible=icon]]:justify-center group-[[data-collapsible=icon]]:px-2"
+                >
+                  <Link href="/dashboard/projects">
+                    <Users className="h-4 w-4" />
+                    <span className="group-[[data-collapsible=icon]]:hidden">My Projects</span>
+                  </Link>
+                </Button>
+              )}
             </div>
           </div>
 
-          <div className="px-2 py-2">
-            <h2 className="mb-2 px-2 text-xs font-semibold tracking-tight text-muted-foreground group-[[data-collapsible=icon]]:hidden">
-              Learning Tools
-            </h2>
-            <div className="space-y-1">
-              <Button
-                asChild
-                variant={pathname?.includes("/study-guide") ? "secondary" : "ghost"}
-                className="w-full justify-start gap-2 group-[[data-collapsible=icon]]:justify-center group-[[data-collapsible=icon]]:px-2"
-              >
-                <Link href="/dashboard/study-guide">
-                  <BookOpen className="h-4 w-4" />
-                  <span className="group-[[data-collapsible=icon]]:hidden">Study Guide</span>
-                </Link>
-              </Button>
-              <Button
-                asChild
-                variant={pathname?.includes("/brainstorm") ? "secondary" : "ghost"}
-                className="w-full justify-start gap-2 group-[[data-collapsible=icon]]:justify-center group-[[data-collapsible=icon]]:px-2"
-              >
-                <Link href="/dashboard/brainstorm">
-                  <Lightbulb className="h-4 w-4" />
-                  <span className="group-[[data-collapsible=icon]]:hidden">Brainstorm</span>
-                </Link>
-              </Button>
-              <Button
-                asChild
-                variant={pathname?.includes("/calendar") ? "secondary" : "ghost"}
-                className="w-full justify-start gap-2 group-[[data-collapsible=icon]]:justify-center group-[[data-collapsible=icon]]:px-2"
-              >
-                <Link href="/dashboard/calendar">
-                  <Calendar className="h-4 w-4" />
-                  <span className="group-[[data-collapsible=icon]]:hidden">Calendar</span>
-                </Link>
-              </Button>
-              <Button
-                asChild
-                variant={pathname?.includes("/messages") ? "secondary" : "ghost"}
-                className="w-full justify-start gap-2 group-[[data-collapsible=icon]]:justify-center group-[[data-collapsible=icon]]:px-2"
-              >
-                <Link href="/dashboard/messages">
-                  <MessageSquare className="h-4 w-4" />
-                  <span className="group-[[data-collapsible=icon]]:hidden">Messages</span>
-                </Link>
-              </Button>
+          {!isTeacher && (
+            <div className="px-2 py-2">
+              <h2 className="mb-2 px-2 text-xs font-semibold tracking-tight text-muted-foreground group-[[data-collapsible=icon]]:hidden">
+                Learning Tools
+              </h2>
+              <div className="space-y-1">
+                <Button
+                  asChild
+                  variant={pathname?.includes("/study-guide") ? "secondary" : "ghost"}
+                  className="w-full justify-start gap-2 group-[[data-collapsible=icon]]:justify-center group-[[data-collapsible=icon]]:px-2"
+                >
+                  <Link href="/dashboard/study-guide">
+                    <BookOpen className="h-4 w-4" />
+                    <span className="group-[[data-collapsible=icon]]:hidden">Study Guide</span>
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant={pathname?.includes("/brainstorm") ? "secondary" : "ghost"}
+                  className="w-full justify-start gap-2 group-[[data-collapsible=icon]]:justify-center group-[[data-collapsible=icon]]:px-2"
+                >
+                  <Link href="/dashboard/brainstorm">
+                    <Lightbulb className="h-4 w-4" />
+                    <span className="group-[[data-collapsible=icon]]:hidden">Brainstorm</span>
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant={pathname?.includes("/calendar") ? "secondary" : "ghost"}
+                  className="w-full justify-start gap-2 group-[[data-collapsible=icon]]:justify-center group-[[data-collapsible=icon]]:px-2"
+                >
+                  <Link href="/dashboard/calendar">
+                    <Calendar className="h-4 w-4" />
+                    <span className="group-[[data-collapsible=icon]]:hidden">Calendar</span>
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant={pathname?.includes("/messages") ? "secondary" : "ghost"}
+                  className="w-full justify-start gap-2 group-[[data-collapsible=icon]]:justify-center group-[[data-collapsible=icon]]:px-2"
+                >
+                  <Link href="/dashboard/messages">
+                    <MessageSquare className="h-4 w-4" />
+                    <span className="group-[[data-collapsible=icon]]:hidden">Messages</span>
+                  </Link>
+                </Button>
+              </div>
             </div>
-          </div>
+          )}
 
           {isTeacher && (
             <div className="px-2 py-2">
@@ -128,27 +134,27 @@ export function AppSidebar() {
               <div className="space-y-1">
                 <Button
                   asChild
-                  variant={pathname?.includes("/students") ? "secondary" : "ghost"}
+                  variant={pathname?.includes("/teacher/students") ? "secondary" : "ghost"}
                   className="w-full justify-start gap-2 group-[[data-collapsible=icon]]:justify-center group-[[data-collapsible=icon]]:px-2"
                 >
                   <Link href="/dashboard/teacher/students">
-                    <User className="h-4 w-4" />
+                    <GraduationCap className="h-4 w-4" />
                     <span className="group-[[data-collapsible=icon]]:hidden">Students</span>
                   </Link>
                 </Button>
                 <Button
                   asChild
-                  variant={pathname?.includes("/rubrics") ? "secondary" : "ghost"}
+                  variant={pathname?.includes("/teacher/rubrics") ? "secondary" : "ghost"}
                   className="w-full justify-start gap-2 group-[[data-collapsible=icon]]:justify-center group-[[data-collapsible=icon]]:px-2"
                 >
                   <Link href="/dashboard/teacher/rubrics">
-                    <ClipboardList className="h-4 w-4" />
+                    <FileText className="h-4 w-4" />
                     <span className="group-[[data-collapsible=icon]]:hidden">Rubrics</span>
                   </Link>
                 </Button>
                 <Button
                   asChild
-                  variant={pathname?.includes("/analytics") ? "secondary" : "ghost"}
+                  variant={pathname?.includes("/teacher/analytics") ? "secondary" : "ghost"}
                   className="w-full justify-start gap-2 group-[[data-collapsible=icon]]:justify-center group-[[data-collapsible=icon]]:px-2"
                 >
                   <Link href="/dashboard/teacher/analytics">
@@ -189,6 +195,17 @@ export function AppSidebar() {
             <DropdownMenuItem>
               <Settings className="mr-2 h-4 w-4" />
               <span>Settings</span>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={() => {
+              if (isTeacher) {
+                window.location.href = "/dashboard"
+              } else {
+                window.location.href = "/dashboard/teacher"
+              }
+            }}>
+              <User className="mr-2 h-4 w-4" />
+              <span>Switch to {isTeacher ? "Student" : "Teacher"} Mode</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
