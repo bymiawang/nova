@@ -1,4 +1,4 @@
-# nova
+``# nova
 
 Nova is an AI-powered web app that helps teachers and students plan, organize, and complete their academic projects with ease. Built as part of our Directed Research group with Hope Hsiao, Hamin Jin, Cristina Colina, and Ahmya Rivera.
 
@@ -30,8 +30,3 @@ Nova is deployed on [Vercel](https://nova-puce-tau.vercel.app/).
 - Next.js  
 - TypeScript  
 - Tailwind CSS  
-
-## License
-
-MIT License  
-© 2025 bymiawang# nova
