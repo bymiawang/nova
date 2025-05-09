@@ -52,12 +52,34 @@ export default function ProjectPage() {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <span>Overall Progress</span>
-                <span className="font-medium">{projectDetails.progress}%</span>
+                <span>Phases</span>
               </div>
-              <Progress value={projectDetails.progress} />
+              <div className="space-y-2">
+                {projectDetails.phases.map((phase, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    {phase.status === "Completed" ? (
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                    ) : phase.status === "In Progress" ? (
+                      <Clock className="h-4 w-4 text-yellow-500" />
+                    ) : (
+                      <Clock className="h-4 w-4 text-gray-400" />
+                    )}
+                    <span className="text-sm font-medium">{phase.name}</span>
+                    <Badge
+                      variant={
+                        phase.status === "Completed"
+                          ? "default"
+                          : phase.status === "In Progress"
+                          ? "secondary"
+                          : "outline"
+                      }
+                    >
+                      {phase.status}
+                    </Badge>
+                  </div>
+                ))}
+              </div>
             </div>
-
             <Accordion type="single" collapsible className="w-full">
               {projectDetails.phases.map((phase, index) => (
                 <AccordionItem key={index} value={`phase-${index}`}>
@@ -69,8 +91,8 @@ export default function ProjectPage() {
                           phase.status === "Completed"
                             ? "default"
                             : phase.status === "In Progress"
-                              ? "secondary"
-                              : "outline"
+                            ? "secondary"
+                            : "outline"
                         }
                       >
                         {phase.status}

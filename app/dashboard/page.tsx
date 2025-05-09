@@ -32,7 +32,6 @@ export default function DashboardPage() {
       status: "needs-attention",
       dueDate: "May 22, 2024",
       subject: "History",
-      progress: 40,
       phases: [
         { name: "Research Phase", status: "In Progress" },
         { name: "Planning Phase", status: "Not Started" },
@@ -48,7 +47,12 @@ export default function DashboardPage() {
       title: "Advanced Calculus",
       type: "Textbook",
       subject: "Mathematics",
-      progress: 65,
+      milestones: [
+        { name: "Chapter 1: Limits", status: "Completed" },
+        { name: "Chapter 2: Derivatives", status: "Completed" },
+        { name: "Chapter 3: Integration", status: "In Progress" },
+        { name: "Chapter 4: Applications", status: "Not Started" },
+      ],
       lastStudied: "2 days ago",
       chapter: "Integration Techniques",
       aiRecommendation: "Focus on Chapter 3: Integration by Parts - aligns with upcoming quiz topics",
@@ -58,7 +62,12 @@ export default function DashboardPage() {
       title: "Cell Biology Notes",
       type: "Document",
       subject: "Biology",
-      progress: 45,
+      milestones: [
+        { name: "Cell Structure", status: "Completed" },
+        { name: "Cell Membrane", status: "Completed" },
+        { name: "Cellular Respiration", status: "In Progress" },
+        { name: "Photosynthesis", status: "Not Started" },
+      ],
       lastStudied: "1 day ago",
       chapter: "Cellular Respiration",
       aiRecommendation: "Review electron transport chain section - identified as a knowledge gap",
@@ -237,9 +246,21 @@ export default function DashboardPage() {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-muted-foreground">Progress</span>
-                      <span className="font-medium">{project.progress}%</span>
                     </div>
-                    <Progress value={project.progress} />
+                    <div className="space-y-2">
+                      {project.phases.map((phase, index) => (
+                        <div key={index} className="flex items-center gap-2">
+                          {phase.status === "Completed" ? (
+                            <CheckCircle2 className="h-4 w-4 text-green-500" />
+                          ) : phase.status === "In Progress" ? (
+                            <Clock className="h-4 w-4 text-yellow-500" />
+                          ) : (
+                            <AlertCircle className="h-4 w-4 text-gray-400" />
+                          )}
+                          <span className="text-sm">{phase.name}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {project.phases.map((phase, index) => (
@@ -294,9 +315,21 @@ export default function DashboardPage() {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-muted-foreground">Progress</span>
-                      <span className="font-medium">{material.progress}%</span>
                     </div>
-                    <Progress value={material.progress} />
+                    <div className="space-y-2">
+                      {material.milestones.map((milestone, index) => (
+                        <div key={index} className="flex items-center gap-2">
+                          {milestone.status === "Completed" ? (
+                            <CheckCircle2 className="h-4 w-4 text-green-500" />
+                          ) : milestone.status === "In Progress" ? (
+                            <Clock className="h-4 w-4 text-yellow-500" />
+                          ) : (
+                            <AlertCircle className="h-4 w-4 text-gray-400" />
+                          )}
+                          <span className="text-sm">{milestone.name}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                   <p className="text-sm text-muted-foreground">Last studied {material.lastStudied}</p>
                   <div className="flex items-start gap-2 text-sm text-muted-foreground pt-2">
